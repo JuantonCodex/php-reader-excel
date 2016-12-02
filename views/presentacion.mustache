@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Pedidos históricos</title>
+  <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700" rel="stylesheet">
+  <link rel="stylesheet" href="css/vendor/foundation.min.css">
+  <link rel="stylesheet" href="css/app.css">
+</head>
+<body>
+  <div class="top-bar">
+    <div class="row">
+      <h1 class="Titulo">Reporte Mapfre: Noviembre 2016</h1>
+      <span>Tiempo para leer el archivo: {{tiempo_lectura_archivo}} segundos</span>
+    </div>
+  </div>
+  <br>
+  <section class="row" id="content">
+    <div class="columns">
+      <table align="left" class="TablaResultados">
+        <thead>
+          <tr>
+            <th width="150"> - </th>
+            <th width="">SOAT</th>
+            <th width="">Vida</th>
+            <th width="">Vehicular</th>
+            <th width="">Salud</th>
+            <th width="">SCTR</th>
+            <th width="">Hogar</th>
+            <th width="">EPS</th>
+            <th width="">Rrgg</th>
+            <th width="">Empresarial</th>
+            <th width="">Vida Ley</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Bruto</td>
+            <td>{{soat_bruto}}</td>
+            <td>{{vida_bruto}}</td>
+            <td>{{vehicular_bruto}}</td>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+          </tr>
+          <tr>
+            <td>Adwords</td>
+            {{#soat}}
+              <td>{{adwords}}</td>
+            {{/soat}}
+            {{#vida}}
+              <td>{{adwords}}</td>
+            {{/vida}}
+            {{#vehicular}}
+              <td>{{adwords}}</td>
+            {{/vehicular}}
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+          </tr>
+          <tr>
+            <td>Directo</td>
+            {{#soat}}
+              <td>{{directo}}</td>
+            {{/soat}}
+            {{#vida}}
+              <td>{{directo}}</td>
+            {{/vida}}
+            {{#vehicular}}
+              <td>{{directo}}</td>
+            {{/vehicular}}
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+          </tr>
+          <tr>
+            <td>Email</td>
+            {{#soat}}
+              <td>{{email}}</td>
+            {{/soat}}
+            {{#vida}}
+              <td>{{email}}</td>
+            {{/vida}}
+            {{#vehicular}}
+              <td>{{email}}</td>
+            {{/vehicular}}
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+          </tr>
+          <tr>
+            <td>Orgánico</td>
+            {{#soat}}
+              <td>{{organico}}</td>
+            {{/soat}}
+            {{#vida}}
+              <td>{{organico}}</td>
+            {{/vida}}
+            {{#vehicular}}
+              <td>{{organico}}</td>
+            {{/vehicular}}
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+          </tr>
+          <tr>
+            <td>Referencia</td>
+            {{#soat}}
+              <td>{{referencia}}</td>
+            {{/soat}}
+            {{#vida}}
+              <td>{{referencia}}</td>
+            {{/vida}}
+            {{#vehicular}}
+              <td>{{referencia}}</td>
+            {{/vehicular}}
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+          </tr>
+          <tr>
+            <td>Social Media</td>
+            {{#soat}}
+              <td>{{social_media}}</td>
+            {{/soat}}
+            {{#vida}}
+              <td>{{social_media}}</td>
+            {{/vida}}
+            {{#vehicular}}
+              <td>{{social_media}}</td>
+            {{/vehicular}}
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+          </tr>
+          <tr>
+            <td>Vacío</td>
+            {{#soat}}
+              <td>{{vacio}}</td>
+            {{/soat}}
+            {{#vida}}
+              <td>{{vacio}}</td>
+            {{/vida}}
+            {{#vehicular}}
+              <td>{{vacio}}</td>
+            {{/vehicular}}
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+          </tr>
+          <tr>
+            <td>Otros</td>
+            {{#soat}}
+              <td>{{otros}}</td>
+            {{/soat}}
+            {{#vida}}
+              <td>{{otros}}</td>
+            {{/vida}}
+            {{#vehicular}}
+              <td>{{otros}}</td>
+            {{/vehicular}}
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+            <td>-</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <script src="js/vendor/jquery.js"></script>
+  <script src="js/vendor/what-input.js"></script>
+  <script src="js/vendor/foundation.min.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
