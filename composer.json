@@ -1,0 +1,13 @@
+{
+  "name": "ux1/depurador-excel",
+  "description": "Depurador de archivos excel",
+  "require": {
+    "akeneo-labs/spreadsheet-parser": "^1.2"
+  },
+  "authors": [
+    {
+      "name": "Juan Cahuana",
+      "email": "jcahuana@attachmedia.com"
+    }
+  ]
+}
