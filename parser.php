@@ -31,79 +31,204 @@
 
   $myWorksheetIndex = $workbook->getWorksheetIndex('Referidos');
 
-  // $data = array (
-  //   "soat" => array ("adwords" => 0,"si24" => 0,"directo" => 0,"email" => 0,"organico" => 0,"referencia" => 0,"social_media" => 0,"vacio" => 0,"otros" => 0),
-  //   "vida" => array ("adwords" => 0,"si24" => 0,"directo" => 0,"email" => 0,"organico" => 0,"referencia" => 0,"social_media" => 0,"vacio" => 0,"otros" => 0),
-  //   "vehicular" => array ("adwords" => 0,"si24" => 0,"directo" => 0,"email" => 0,"organico" => 0,"referencia" => 0,"social_media" => 0,"vacio" => 0,"otros" => 0)
-  // );
+  // Productos que se mostrarán en la tabla de reporte
+  $soat        = new Producto('soat');
+  $vida        = new Producto('vida');
+  $vehicular   = new Producto('vehicular');
+  $salud       = new Producto('salud');
+  $sctr        = new Producto('sctr');
+  $hogar       = new Producto('hogar');
+  $eps         = new Producto('eps');
+  $rrgg        = new Producto('rrgg');
+  $empresarial = new Producto('empresarial');
+  $vidaley     = new Producto('vidaley');
 
-  $soat      = new Producto('soat');
-  $vida      = new Producto('vida');
-  $vehicular = new Producto('vehicular');
-
-  //$datos = $producto->obtenerDatosCompletos();
-
-  //echo "<pre>".print_r($datos['soat'])."</pre>";
-  // var_dump($producto);
-
+  // Lista de contador de cantidad bruta por cada producto
+  $bruto = array();
+  // Lista de contador de cantidad neta por cada producto
+  $neto = array();
 
   foreach ($workbook->createRowIterator($myWorksheetIndex) as $rowIndex => $values) {
-    //var_dump($rowIndex, $values);
 
-    $categoria = $values[17];
-    $fuente    = $values[24];
-    $medio     = $values[35];
+    // var_dump($values);
+    // if ($values[$columnIndex] === 'MOTIVO_NO_CIERRE_VENTA') {
+    //   echo "cha pasa";
+    // }
 
-    // LLenamos datos para SOAT
-    if ($categoria === 'SOAT') {
+      $categoria = $values[17];
+      $fuente    = $values[24];
+      $medio     = $values[35];
 
-      if ($fuente === 'Lead_Ads_Facebook') {
-        $medio = 'social-media';
+      // LLenamos datos para SOAT
+      if ($categoria === 'SOAT') {
+
+        $medio = ($fuente === 'Lead_Ads_Facebook') ? 'social-media' : $medio;
+
+        if ($fuente != 'SOAT_COMMERCE_BD' && $fuente != 'SOAT_COMMERCE_BD_CLIENTES' && $fuente != 'fuente_referido_si24') {
+          $soat->procesarMedio($medio);
+        }
       }
 
-      if ($fuente != 'SOAT_COMMERCE_BD' && $fuente != 'SOAT_COMMERCE_BD_CLIENTES' && $fuente != 'fuente_referido_si24') {
-        $soat->procesarMedio($medio);
-      }
-    }
+      // LLenamos datos para VIDA
+      if ($categoria === 'Vida') {
 
-    // LLenamos datos para VIDA
-    if ($categoria === 'Vida') {
-      if ($fuente === 'Lead_Ads_Facebook') {
-        $medio = 'social-media';
-      }
-      if ($fuente != 'fuente_referido_si24') {
-        $vida->procesarMedio($medio);
-      }
-    }
+        $medio = ($fuente === 'Lead_Ads_Facebook') ? 'social-media' : $medio;
 
-    // LLenamos datos para Vehicular
-    if ($categoria === 'Vehicular') {
-      if ($fuente === 'Lead_Ads_Facebook') {
-        $medio = 'social-media';
+        if ($fuente != 'fuente_referido_si24') {
+          $vida->procesarMedio($medio);
+        }
       }
 
-      $filtro = ($fuente != 'fuente_referido_si24' &&
-                 $fuente != 'SV_COMMERCE_BD_DATOSVEHICULO' &&
-                 $fuente != 'SV_COMMERCE_BD_FECHANAC' &&
-                 $fuente != 'SV_COMMERCE_BD_PLACA' &&
-                 $fuente != 'Facebook (FT03-00-001)' ) ? true: false;
+      // LLenamos datos para Vehicular
+      if ($categoria === 'Vehicular') {
 
-      if ($filtro) {
-        $vehicular->procesarMedio($medio);
+        $medio = ($fuente === 'Lead_Ads_Facebook') ? 'social-media' : $medio;
+
+        $filtro = ($fuente != 'fuente_referido_si24' &&
+                   $fuente != 'SV_COMMERCE_BD_DATOSVEHICULO' &&
+                   $fuente != 'SV_COMMERCE_BD_FECHANAC' &&
+                   $fuente != 'SV_COMMERCE_BD_PLACA' &&
+                   $fuente != 'Facebook (FT03-00-001)' ) ? true: false;
+
+        if ($filtro) {
+          $vehicular->procesarMedio($medio);
+        }
       }
-    }
+
+      // LLenamos datos para Salud
+      if ($categoria === 'Salud') {
+
+        $medio = ($fuente === 'Lead_Ads_Facebook') ? 'social-media' : $medio;
+
+        $filtro = ($fuente != 'fuente_referido_si24') ? true: false;
+
+        if ($filtro) {
+          $salud->procesarMedio($medio);
+        }
+      }
+
+      // LLenamos datos para SCTR
+      if ($categoria === 'SCTR') {
+
+        $medio = ($fuente === 'Lead_Ads_Facebook') ? 'social-media' : $medio;
+
+        $filtro = ($fuente != 'fuente_referido_si24') ? true : false;
+
+        if ($filtro) {
+          $sctr->procesarMedio($medio);
+        }
+      }
+
+      // LLenamos datos para Hogar
+      if ($categoria === 'Hogar') {
+
+        $medio = ($fuente === 'Lead_Ads_Facebook') ? 'social-media' : $medio;
+
+        $filtro = ($fuente != 'fuente_referido_si24' &&
+                   $fuente != 'Facebook (FT03-00-001)' ) ? true: false;
+
+        if ($filtro) {
+          $hogar->procesarMedio($medio);
+        }
+      }
+
+      // LLenamos datos para EPS
+      if ($categoria === 'EPS') {
+
+        $medio = ($fuente === 'Lead_Ads_Facebook') ? 'social-media' : $medio;
+
+        $filtro = ($fuente != 'fuente_referido_si24') ? true: false;
+
+        if ($filtro) {
+          $eps->procesarMedio($medio);
+        }
+      }
+
+      // LLenamos datos para Rrgg
+      if ($categoria === 'Rrgg') {
+
+        $medio = ($fuente === 'Lead_Ads_Facebook') ? 'social-media' : $medio;
+
+        $filtro = ($fuente != 'fuente_referido_si24') ? true: false;
+
+        if ($filtro) {
+          $rrgg->procesarMedio($medio);
+        }
+      }
+
+      // LLenamos datos para Empresarial
+      if ($categoria === 'Empresarial') {
+
+        $medio = ($fuente === 'Lead_Ads_Facebook') ? 'social-media' : $medio;
+
+        $filtro = ($fuente != 'fuente_referido_si24') ? true: false;
+
+        if ($filtro) {
+          $empresarial->procesarMedio($medio);
+        }
+      }
+
+      // LLenamos datos para Vida Ley
+      if ($categoria === 'Vida Ley') {
+
+        $medio = ($fuente === 'Lead_Ads_Facebook') ? 'social-media' : $medio;
+
+        $filtro = ($fuente != 'fuente_referido_si24') ? true: false;
+
+        if ($filtro) {
+          $vidaley->procesarMedio($medio);
+        }
+      }
+
 
   }
+
+  // Guardar las cantidades brutas
+  $bruto['soat']        = array_sum($soat->obtenerDatosCompletos());
+  $bruto['vida']        = array_sum($vida->obtenerDatosCompletos());
+  $bruto['vehicular']   = array_sum($vehicular->obtenerDatosCompletos());
+  $bruto['salud']       = array_sum($salud->obtenerDatosCompletos());
+  $bruto['sctr']        = array_sum($sctr->obtenerDatosCompletos());
+  $bruto['hogar']       = array_sum($hogar->obtenerDatosCompletos());
+  $bruto['eps']         = array_sum($eps->obtenerDatosCompletos());
+  $bruto['rrgg']        = array_sum($rrgg->obtenerDatosCompletos());
+  $bruto['empresarial'] = array_sum($empresarial->obtenerDatosCompletos());
+  $bruto['vidaley']     = array_sum($vidaley->obtenerDatosCompletos());
 
   $tpl = $mustache->loadTemplate('presentacion'); // loads __DIR__.'/views/foo.mustache';
   echo $tpl->render(array(
     "tiempo_lectura_archivo" => $callTime,
-    "soat_bruto" => array_sum($soat->obtenerDatosCompletos()),
+    "cantidad_bruta" => $bruto,
+
     "soat" => $soat->obtenerDatosCompletos(),
-    "vida_bruto" => array_sum($vida->obtenerDatosCompletos()),
+    "soat_detalle_otros" => $soat->detalleOtros(),
+
     "vida" => $vida->obtenerDatosCompletos(),
-    "vehicular_bruto" => array_sum($vehicular->obtenerDatosCompletos()),
-    "vehicular" => $vehicular->obtenerDatosCompletos()
+    "vida_detalle_otros" => $vida->detalleOtros(),
+
+    "vehicular" => $vehicular->obtenerDatosCompletos(),
+    "vehicular_detalle_otros" => $vehicular->detalleOtros(),
+
+    "salud" => $salud->obtenerDatosCompletos(),
+    "salud_detalle_otros" => $salud->detalleOtros(),
+
+    "sctr" => $sctr->obtenerDatosCompletos(),
+    "sctr_detalle_otros" => $sctr->detalleOtros(),
+
+    "hogar" => $hogar->obtenerDatosCompletos(),
+    "hogar_detalle_otros" => $hogar->detalleOtros(),
+
+    "eps" => $eps->obtenerDatosCompletos(),
+    "eps_detalle_otros" => $eps->detalleOtros(),
+
+    "rrgg" => $rrgg->obtenerDatosCompletos(),
+    "rrgg_detalle_otros" => $rrgg->detalleOtros(),
+
+    "empresarial" => $empresarial->obtenerDatosCompletos(),
+    "empresarial_detalle_otros" => $empresarial->detalleOtros(),
+
+    "vidaley" => $vidaley->obtenerDatosCompletos(),
+    "vidaley_detalle_otros" => $vidaley->detalleOtros()
   ));
 
 ?>

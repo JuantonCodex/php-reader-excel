@@ -2,6 +2,7 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
   <title>Pedidos históricos</title>
   <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:400,700" rel="stylesheet">
   <link rel="stylesheet" href="css/vendor/foundation.min.css">
@@ -10,7 +11,7 @@
 <body>
   <div class="top-bar">
     <div class="row">
-      <h1 class="Titulo">Reporte Mapfre: Noviembre 2016</h1>
+      <h1 class="Titulo">Reporte Mapfre: Octubre 2016</h1>
       <span>Tiempo para leer el archivo: {{tiempo_lectura_archivo}} segundos</span>
     </div>
   </div>
@@ -36,173 +37,331 @@
         <tbody>
           <tr>
             <td>Bruto</td>
-            <td>{{soat_bruto}}</td>
-            <td>{{vida_bruto}}</td>
-            <td>{{vehicular_bruto}}</td>
-            <td>-</td>
-            <td>-</td>
-            <td>-</td>
-            <td>-</td>
-            <td>-</td>
-            <td>-</td>
-            <td>-</td>
+            <td>{{cantidad_bruta.soat}}</td>
+            <td>{{cantidad_bruta.vida}}</td>
+            <td>{{cantidad_bruta.vehicular}}</td>
+            <td>{{cantidad_bruta.salud}}</td>
+            <td>{{cantidad_bruta.sctr}}</td>
+            <td>{{cantidad_bruta.hogar}}</td>
+            <td>{{cantidad_bruta.eps}}</td>
+            <td>{{cantidad_bruta.rrgg}}</td>
+            <td>{{cantidad_bruta.empresarial}}</td>
+            <td>{{cantidad_bruta.vidaley}}</td>
+          </tr>
+          <tr>
+            <td>Neto</td>
+            <td>{{cantidad_bruta.soat}}</td>
+            <td>{{cantidad_bruta.vida}}</td>
+            <td>{{cantidad_bruta.vehicular}}</td>
+            <td>{{cantidad_bruta.salud}}</td>
+            <td>{{cantidad_bruta.sctr}}</td>
+            <td>{{cantidad_bruta.hogar}}</td>
+            <td>{{cantidad_bruta.eps}}</td>
+            <td>{{cantidad_bruta.rrgg}}</td>
+            <td>{{cantidad_bruta.empresarial}}</td>
+            <td>{{cantidad_bruta.vidaley}}</td>
           </tr>
           <tr>
             <td>Adwords</td>
-            {{#soat}}
-              <td>{{adwords}}</td>
-            {{/soat}}
-            {{#vida}}
-              <td>{{adwords}}</td>
-            {{/vida}}
-            {{#vehicular}}
-              <td>{{adwords}}</td>
-            {{/vehicular}}
-            <td>-</td>
-            <td>-</td>
-            <td>-</td>
-            <td>-</td>
-            <td>-</td>
-            <td>-</td>
-            <td>-</td>
+            <td>{{soat.adwords}}</td>
+            <td>{{vida.adwords}}</td>
+            <td>{{vehicular.adwords}}</td>
+            <td>{{salud.adwords}}</td>
+            <td>{{sctr.adwords}}</td>
+            <td>{{hogar.adwords}}</td>
+            <td>{{eps.adwords}}</td>
+            <td>{{rrgg.adwords}}</td>
+            <td>{{empresarial.adwords}}</td>
+            <td>{{vidaley.adwords}}</td>
           </tr>
           <tr>
             <td>Directo</td>
-            {{#soat}}
-              <td>{{directo}}</td>
-            {{/soat}}
-            {{#vida}}
-              <td>{{directo}}</td>
-            {{/vida}}
-            {{#vehicular}}
-              <td>{{directo}}</td>
-            {{/vehicular}}
-            <td>-</td>
-            <td>-</td>
-            <td>-</td>
-            <td>-</td>
-            <td>-</td>
-            <td>-</td>
-            <td>-</td>
+            <td>{{soat.directo}}</td>
+            <td>{{vida.directo}}</td>
+            <td>{{vehicular.directo}}</td>
+            <td>{{salud.directo}}</td>
+            <td>{{sctr.directo}}</td>
+            <td>{{hogar.directo}}</td>
+            <td>{{eps.directo}}</td>
+            <td>{{rrgg.directo}}</td>
+            <td>{{empresarial.directo}}</td>
+            <td>{{vidaley.directo}}</td>
           </tr>
           <tr>
             <td>Email</td>
-            {{#soat}}
-              <td>{{email}}</td>
-            {{/soat}}
-            {{#vida}}
-              <td>{{email}}</td>
-            {{/vida}}
-            {{#vehicular}}
-              <td>{{email}}</td>
-            {{/vehicular}}
-            <td>-</td>
-            <td>-</td>
-            <td>-</td>
-            <td>-</td>
-            <td>-</td>
-            <td>-</td>
-            <td>-</td>
+            <td>{{soat.email}}</td>
+            <td>{{vida.email}}</td>
+            <td>{{vehicular.email}}</td>
+            <td>{{salud.email}}</td>
+            <td>{{sctr.email}}</td>
+            <td>{{hogar.email}}</td>
+            <td>{{eps.email}}</td>
+            <td>{{rrgg.email}}</td>
+            <td>{{empresarial.email}}</td>
+            <td>{{vidaley.email}}</td>
           </tr>
           <tr>
             <td>Orgánico</td>
-            {{#soat}}
-              <td>{{organico}}</td>
-            {{/soat}}
-            {{#vida}}
-              <td>{{organico}}</td>
-            {{/vida}}
-            {{#vehicular}}
-              <td>{{organico}}</td>
-            {{/vehicular}}
-            <td>-</td>
-            <td>-</td>
-            <td>-</td>
-            <td>-</td>
-            <td>-</td>
-            <td>-</td>
-            <td>-</td>
+            <td>{{soat.organico}}</td>
+            <td>{{vida.organico}}</td>
+            <td>{{vehicular.organico}}</td>
+            <td>{{salud.organico}}</td>
+            <td>{{sctr.organico}}</td>
+            <td>{{hogar.organico}}</td>
+            <td>{{eps.organico}}</td>
+            <td>{{rrgg.organico}}</td>
+            <td>{{empresarial.organico}}</td>
+            <td>{{vidaley.organico}}</td>
           </tr>
           <tr>
             <td>Referencia</td>
-            {{#soat}}
-              <td>{{referencia}}</td>
-            {{/soat}}
-            {{#vida}}
-              <td>{{referencia}}</td>
-            {{/vida}}
-            {{#vehicular}}
-              <td>{{referencia}}</td>
-            {{/vehicular}}
-            <td>-</td>
-            <td>-</td>
-            <td>-</td>
-            <td>-</td>
-            <td>-</td>
-            <td>-</td>
-            <td>-</td>
+            <td>{{soat.referencia}}</td>
+            <td>{{vida.referencia}}</td>
+            <td>{{vehicular.referencia}}</td>
+            <td>{{salud.referencia}}</td>
+            <td>{{sctr.referencia}}</td>
+            <td>{{hogar.referencia}}</td>
+            <td>{{eps.referencia}}</td>
+            <td>{{rrgg.referencia}}</td>
+            <td>{{empresarial.referencia}}</td>
+            <td>{{vidaley.referencia}}</td>
           </tr>
           <tr>
             <td>Social Media</td>
-            {{#soat}}
-              <td>{{social_media}}</td>
-            {{/soat}}
-            {{#vida}}
-              <td>{{social_media}}</td>
-            {{/vida}}
-            {{#vehicular}}
-              <td>{{social_media}}</td>
-            {{/vehicular}}
-            <td>-</td>
-            <td>-</td>
-            <td>-</td>
-            <td>-</td>
-            <td>-</td>
-            <td>-</td>
-            <td>-</td>
+            <td>{{soat.social_media}}</td>
+            <td>{{vida.social_media}}</td>
+            <td>{{vehicular.social_media}}</td>
+            <td>{{salud.social_media}}</td>
+            <td>{{sctr.social_media}}</td>
+            <td>{{hogar.social_media}}</td>
+            <td>{{eps.social_media}}</td>
+            <td>{{rrgg.social_media}}</td>
+            <td>{{empresarial.social_media}}</td>
+            <td>{{vidaley.social_media}}</td>
           </tr>
           <tr>
             <td>Vacío</td>
-            {{#soat}}
-              <td>{{vacio}}</td>
-            {{/soat}}
-            {{#vida}}
-              <td>{{vacio}}</td>
-            {{/vida}}
-            {{#vehicular}}
-              <td>{{vacio}}</td>
-            {{/vehicular}}
-            <td>-</td>
-            <td>-</td>
-            <td>-</td>
-            <td>-</td>
-            <td>-</td>
-            <td>-</td>
-            <td>-</td>
+            <td>{{soat.vacio}}</td>
+            <td>{{vida.vacio}}</td>
+            <td>{{vehicular.vacio}}</td>
+            <td>{{salud.vacio}}</td>
+            <td>{{sctr.vacio}}</td>
+            <td>{{hogar.vacio}}</td>
+            <td>{{eps.vacio}}</td>
+            <td>{{rrgg.vacio}}</td>
+            <td>{{empresarial.vacio}}</td>
+            <td>{{vidaley.vacio}}</td>
           </tr>
           <tr>
             <td>Otros</td>
-            {{#soat}}
-              <td>{{otros}}</td>
-            {{/soat}}
-            {{#vida}}
-              <td>{{otros}}</td>
-            {{/vida}}
-            {{#vehicular}}
-              <td>{{otros}}</td>
-            {{/vehicular}}
-            <td>-</td>
-            <td>-</td>
-            <td>-</td>
-            <td>-</td>
-            <td>-</td>
-            <td>-</td>
-            <td>-</td>
+            <td>
+              {{#soat.otros}}
+                <a data-open="modal-soat">{{soat.otros}}</a>
+              {{/soat.otros}}
+              {{^soat.otros}}
+                0
+              {{/soat.otros}}
+            </td>
+            <td>
+              {{#vida.otros}}
+                <a data-open="modal-vida">{{vida.otros}}</a>
+              {{/vida.otros}}
+              {{^vida.otros}}
+                0
+              {{/vida.otros}}
+            </td>
+            <td>
+              {{#vehicular.otros}}
+                <a data-open="modal-vehicular">{{vehicular.otros}}</a>
+              {{/vehicular.otros}}
+              {{^vehicular.otros}}
+                0
+              {{/vehicular.otros}}
+            </td>
+            <td>
+              {{#salud.otros}}
+                <a data-open="modal-salud">{{salud.otros}}</a>
+              {{/salud.otros}}
+              {{^salud.otros}}
+                0
+              {{/salud.otros}}
+            </td>
+            <td>
+              {{#sctr.otros}}
+                <a data-open="modal-sctr">{{sctr.otros}}</a>
+              {{/sctr.otros}}
+              {{^sctr.otros}}
+                0
+              {{/sctr.otros}}
+            </td>
+            <td>
+              {{#hogar.otros}}
+                <a data-open="modal-hogar">{{hogar.otros}}</a>
+              {{/hogar.otros}}
+              {{^hogar.otros}}
+                0
+              {{/hogar.otros}}
+            </td>
+            <td>
+              {{#eps.otros}}
+                <a data-open="modal-eps">{{eps.otros}}</a>
+              {{/eps.otros}}
+              {{^eps.otros}}
+                0
+              {{/eps.otros}}
+            </td>
+            <td>
+              {{#rrgg.otros}}
+                <a data-open="modal-rrgg">{{rrgg.otros}}</a>
+              {{/rrgg.otros}}
+              {{^rrgg.otros}}
+                0
+              {{/rrgg.otros}}
+            </td>
+            <td>
+              {{#empresarial.otros}}
+                <a data-open="modal-empresarial">{{empresarial.otros}}</a>
+              {{/empresarial.otros}}
+              {{^empresarial.otros}}
+                0
+              {{/empresarial.otros}}
+            </td>
+            <td>
+              {{#vidaley.otros}}
+                <a data-open="modal-vidaley">{{vidaley.otros}}</a>
+              {{/vidaley.otros}}
+              {{^vidaley.otros}}
+                0
+              {{/vidaley.otros}}
+            </td>
           </tr>
         </tbody>
       </table>
     </div>
   </section>
+
+  <div class="row">
+    <!-- SOAT -->
+    <div class="tiny reveal Modal--otros" id="modal-soat" data-reveal>
+      <h2>SOAT</h2>
+      <ul>
+        {{#soat_detalle_otros}}
+          <li>{{nombre}}</li>
+        {{/soat_detalle_otros}}
+      </ul>
+      <button class="close-button" data-close aria-label="Close modal" type="button">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <!-- Vida -->
+    <div class="tiny reveal Modal--otros" id="modal-vida" data-reveal>
+      <h2>Vida:</h2>
+      <ul>
+        {{#vida_detalle_otros}}
+          <li>{{nombre}}</li>
+        {{/vida_detalle_otros}}
+      </ul>
+      <button class="close-button" data-close aria-label="Close modal" type="button">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <!-- Vehicular -->
+    <div class="tiny reveal Modal--otros" id="modal-vehicular" data-reveal>
+      <h2>Vehicular:</h2>
+      <ul>
+        {{#vehicular_detalle_otros}}
+          <li>{{nombre}}</li>
+        {{/vehicular_detalle_otros}}
+      </ul>
+      <button class="close-button" data-close aria-label="Close modal" type="button">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <!-- Salud -->
+    <div class="tiny reveal Modal--otros" id="modal-salud" data-reveal>
+      <h2>Vehicular:</h2>
+      <ul>
+        {{#salud_detalle_otros}}
+          <li>{{nombre}}</li>
+        {{/salud_detalle_otros}}
+      </ul>
+      <button class="close-button" data-close aria-label="Close modal" type="button">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <!-- SCTR -->
+    <div class="tiny reveal Modal--otros" id="modal-sctr" data-reveal>
+      <h2>SCTR:</h2>
+      <ul>
+        {{#sctr_detalle_otros}}
+          <li>{{nombre}}</li>
+        {{/sctr_detalle_otros}}
+      </ul>
+      <button class="close-button" data-close aria-label="Close modal" type="button">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <!-- Hogar -->
+    <div class="tiny reveal Modal--otros" id="modal-hogar" data-reveal>
+      <h2>Hogar:</h2>
+      <ul>
+        {{#hogar_detalle_otros}}
+          <li>{{nombre}}</li>
+        {{/hogar_detalle_otros}}
+      </ul>
+      <button class="close-button" data-close aria-label="Close modal" type="button">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <!-- EPS -->
+    <div class="tiny reveal Modal--otros" id="modal-eps" data-reveal>
+      <h2>EPS:</h2>
+      <ul>
+        {{#eps_detalle_otros}}
+          <li>{{nombre}}</li>
+        {{/eps_detalle_otros}}
+      </ul>
+      <button class="close-button" data-close aria-label="Close modal" type="button">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <!-- Rrgg -->
+    <div class="tiny reveal Modal--otros" id="modal-rrgg" data-reveal>
+      <h2>Rrgg:</h2>
+      <ul>
+        {{#rrgg_detalle_otros}}
+          <li>{{nombre}}</li>
+        {{/rrgg_detalle_otros}}
+      </ul>
+      <button class="close-button" data-close aria-label="Close modal" type="button">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <!-- Empresarial -->
+    <div class="tiny reveal Modal--otros" id="modal-empresarial" data-reveal>
+      <h2>Empresarial:</h2>
+      <ul>
+        {{#empresarial_detalle_otros}}
+          <li>{{nombre}}</li>
+        {{/empresarial_detalle_otros}}
+      </ul>
+      <button class="close-button" data-close aria-label="Close modal" type="button">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <!-- Vida Ley -->
+    <div class="tiny reveal Modal--otros" id="modal-vidaley" data-reveal>
+      <h2>Vida Ley:</h2>
+      <ul>
+        {{#vidaley_detalle_otros}}
+          <li>{{nombre}}</li>
+        {{/vidaley_detalle_otros}}
+      </ul>
+      <button class="close-button" data-close aria-label="Close modal" type="button">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+  </div>
 
   <script src="js/vendor/jquery.js"></script>
   <script src="js/vendor/what-input.js"></script>

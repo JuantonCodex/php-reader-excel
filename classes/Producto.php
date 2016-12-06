@@ -6,6 +6,7 @@
 
     public $datos = array();
     public $nombre_producto;
+    public $detalle_otros = array();
 
     function __construct($nombre_producto) {
 
@@ -52,12 +53,17 @@
           break;
         default: //Otros
           $this->datos[$this->nombre_producto]['otros']++;
+          array_push($this->detalle_otros, array('nombre'=>$medio));
       }
 
     }
 
     public function obtenerDatosCompletos() {
       return $this->datos[$this->nombre_producto];
+    }
+
+    public function detalleOtros() {
+      return $this->detalle_otros;
     }
   }
 
